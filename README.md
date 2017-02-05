@@ -9,6 +9,8 @@ Rasterize small fonts (8x8 currently supported) for LED projects
 ## Example usage
 
 ```golang
+import "github.com/mdp/smallfont"
+
 message := []byte("smallfont")
 img := image.NewRGBA(image.Rect(0, 0, 128, 32)) // 52Pi OLED size
 ctx := Context{
