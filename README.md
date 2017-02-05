@@ -1,4 +1,8 @@
+![smallfont](https://cloud.githubusercontent.com/assets/2868/22627960/8b74b71c-eb80-11e6-947e-776c3477a12d.png)
+
 # SmallFont
+
+[![Build Status](https://travis-ci.org/mdp/smallfont.svg?branch=master)](https://travis-ci.org/mdp/smallfont)
 
 Rasterize small fonts (8x8 currently supported) for LED projects
 
