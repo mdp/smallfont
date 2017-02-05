@@ -16,8 +16,8 @@ import "github.com/mdp/smallfont"
 func main() {
   message := []byte("smallfont")
   img := image.NewRGBA(image.Rect(0, 0, 128, 32)) // 52Pi OLED size
-  ctx := Context{
-    Font:  Font8x8,
+  ctx := smallfont.Context{
+    Font:  smallfont.Font8x8,
     Dst:   img,
     Color: color.Black,
   }
