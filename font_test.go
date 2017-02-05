@@ -45,9 +45,12 @@ func TestImage(t *testing.T) {
 	ctx = Context{
 		Font:  Font8x8,
 		Dst:   img,
-		Color: color.White,
+		Color: color.Black,
 	}
-	err = ctx.Draw([]byte("smallfont"), 0, 0)
+	err = ctx.Draw([]byte("smallfontissmall"), 0, 0)
+	err = ctx.Draw([]byte("smallfont"), 0, 8)
+	err = ctx.Draw([]byte("smallfont"), 0, 16)
+	err = ctx.Draw([]byte("smallfont"), 0, 24)
 	if err != nil {
 		t.Error("Should not error when writing to a correctly sized image")
 	}
