@@ -36,18 +36,18 @@ func TestImage(t *testing.T) {
 		Dst:   img,
 		Color: color.Black,
 	}
-	err := ctx.Draw([]byte("smallfont"))
+	err := ctx.Draw([]byte("smallfont"), 0, 0)
 	if err == nil {
 		t.Error("Should error when writing outside of bounds")
 	}
 
-	img = image.NewRGBA(image.Rect(0, 0, 8*9, 16))
+	img = image.NewRGBA(image.Rect(0, 0, 128, 32))
 	ctx = Context{
 		Font:  Font8x8,
 		Dst:   img,
-		Color: color.Black,
+		Color: color.White,
 	}
-	err = ctx.Draw([]byte("smallfont"))
+	err = ctx.Draw([]byte("smallfont"), 0, 0)
 	if err != nil {
 		t.Error("Should not error when writing to a correctly sized image")
 	}

@@ -60,11 +60,11 @@ type Context struct {
 }
 
 // Draw a string on an RGBA image
-func (context *Context) Draw(str []byte) error {
+func (context *Context) Draw(str []byte, offsetX, offsetY int) error {
 	for i, c := range str {
 		fc := context.Font.Character(c)
-		offsetX := context.StartX + i*fc.Width
-		offsetY := context.StartY
+		offsetX := offsetX + context.StartX + i*fc.Width
+		offsetY := offsetY + context.StartY
 		for fc.NextBit() {
 			x, y := offsetX+fc.X, offsetY+fc.Y
 			if !(image.Point{x, y}.In(context.Dst.Rect)) {
