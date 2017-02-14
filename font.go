@@ -36,18 +36,36 @@ type FontCharacter struct {
 	Pixel  bool
 }
 
+// PixelMap dumps out a boolean slice of the pixels
+func (c *FontCharacter) PixelMap() []bool {
+	m, i := make([]bool, c.Width*c.Height), 0
+	for c.NextBit() {
+		m[i] = c.Pixel
+		i++
+	}
+	return m
+}
+
 // NextBit grabs the next bit
 func (c *FontCharacter) NextBit() bool {
 	if c.idx >= int(c.Width*c.Height) {
+		c.reset()
 		return false
 	}
-	c.X = c.idx % c.Height
+	c.X = c.idx % c.Width
 	c.Y = c.idx / c.Width
 	b := c.Map[c.Y]
-	i := 1 << uint8(c.Width-c.X-1)
+	i := 1 << uint8(8-c.X-1)
 	c.Pixel = int(b)&i > 0
 	c.idx = c.idx + 1
 	return true
+}
+
+func (c *FontCharacter) reset() {
+	c.idx = 0
+	c.Pixel = false
+	c.X = 0
+	c.Y = 0
 }
 
 // Context for rasterizing text to an image
