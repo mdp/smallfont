@@ -4,25 +4,31 @@
 
 [![Build Status](https://travis-ci.org/mdp/smallfont.svg?branch=master)](https://travis-ci.org/mdp/smallfont)
 
-Rasterize small fonts (8x8 currently supported) for LED projects
+Rasterize small fonts (8x8, 6x8 and 5x8 currently supported) for LED projects
 
 ## Example usage
 
 ```golang
-message := []byte("smallfont")
-img := image.NewRGBA(image.Rect(0, 0, 128, 32)) // 52Pi OLED size
-ctx := Context{
-  Font:  Font6x8,
-  Dst:   img,
-  Color: color.Black,
+package main
+
+import "github.com/mdp/smallfont"
+
+func main() {
+  message := []byte("smallfont")
+  img := image.NewRGBA(image.Rect(0, 0, 128, 32)) // 52Pi OLED size
+  ctx := smallfont.Context{
+    Font:  smallfont.Font8x8,
+    Dst:   img,
+    Color: color.Black,
+  }
+  err := ctx.Draw(message, 0, 0)
+  if err != nil {
+    fmt.Println(err)
+  }
+  f, _ := os.OpenFile("out.png", os.O_CREATE|os.O_RDWR, 0644)
+  defer f.Close()
+  png.Encode(f, img)
 }
-err := ctx.Draw(message, 0, 0)
-if err != nil {
-  fmt.Println(err)
-}
-f, _ := os.OpenFile("out.png", os.O_CREATE|os.O_RDWR, 0644)
-defer f.Close()
-png.Encode(f, img)
 ```
 
 ## License
