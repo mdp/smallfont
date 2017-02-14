@@ -12,7 +12,7 @@ Rasterize small fonts (8x8 currently supported) for LED projects
 message := []byte("smallfont")
 img := image.NewRGBA(image.Rect(0, 0, 128, 32)) // 52Pi OLED size
 ctx := Context{
-  Font:  Font8x8,
+  Font:  Font6x8,
   Dst:   img,
   Color: color.Black,
 }
